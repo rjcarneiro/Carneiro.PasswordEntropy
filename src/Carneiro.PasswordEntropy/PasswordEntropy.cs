@@ -10,7 +10,7 @@ public class PasswordEntropy : IPasswordEntropy
 
     public PasswordEntropyStrength GetStrength(string password)
     {
-        var entropy = GetEntropy(password);
+        double entropy = GetEntropy(password);
 
         return Evaluate(password, entropy);
     }
