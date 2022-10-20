@@ -74,15 +74,12 @@ public class PasswordEntropy : IPasswordEntropy
         if (string.IsNullOrWhiteSpace(password))
             return PasswordEntropyStrength.Blank;
 
-        if (entropy < 20)
-            return PasswordEntropyStrength.VeryWeak;
-
-        if (entropy < 50)
-            return PasswordEntropyStrength.Weak;
-
-        if (entropy < 60)
-            return PasswordEntropyStrength.Good;
-
-        return PasswordEntropyStrength.Strong;
+        return entropy switch
+        {
+            < 20 => PasswordEntropyStrength.VeryWeak,
+            < 50 => PasswordEntropyStrength.Weak,
+            < 60 => PasswordEntropyStrength.Good,
+            _ => PasswordEntropyStrength.Strong
+        };
     }
 }
